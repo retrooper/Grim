@@ -17,6 +17,7 @@ import com.github.retrooper.packetevents.protocol.world.states.defaulttags.Block
 import com.github.retrooper.packetevents.protocol.world.states.type.StateType;
 import com.github.retrooper.packetevents.protocol.world.states.type.StateTypes;
 import com.github.retrooper.packetevents.util.Vector3d;
+import org.bukkit.Bukkit;
 import org.bukkit.util.Vector;
 
 public class MovementTicker {
@@ -308,8 +309,8 @@ public class MovementTicker {
 
     public void livingEntityTravel() {
         double playerGravity = player.compensatedEntities.getSelf().getRiding() == null
-                ? player.compensatedEntities.getSelf().getAttribute(Attributes.GENERIC_GRAVITY).get()
-                : player.compensatedEntities.getSelf().getRiding().getAttribute(Attributes.GENERIC_GRAVITY).get();
+                ? player.compensatedEntities.getSelf().getAttributeValue(Attributes.GENERIC_GRAVITY)
+                : player.compensatedEntities.getSelf().getRiding().getAttributeValue(Attributes.GENERIC_GRAVITY);
 
         boolean isFalling = player.actualMovement.getY() <= 0.0;
         if (isFalling && player.compensatedEntities.getSlowFallingAmplifier() != null) {
@@ -343,6 +344,7 @@ public class MovementTicker {
 
             if (player.depthStriderLevel > 0.0F) {
                 final float divisor = player.getClientVersion().isNewerThanOrEquals(ClientVersion.V_1_21) ? 1.0F : 3.0F;
+                Bukkit.broadcastMessage("level: " + player.depthStriderLevel);
                 swimFriction += (0.54600006F - swimFriction) * player.depthStriderLevel / divisor;
                 swimSpeed += (player.speed - swimSpeed) * player.depthStriderLevel / divisor;
             }

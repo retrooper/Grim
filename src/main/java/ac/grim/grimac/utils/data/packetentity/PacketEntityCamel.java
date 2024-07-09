@@ -11,8 +11,8 @@ public class PacketEntityCamel extends PacketEntityHorse {
     public PacketEntityCamel(GrimPlayer player, EntityType type, double x, double y, double z, float xRot) {
         super(player, type, x, y, z, xRot);
 
-        getAttribute(Attributes.GENERIC_JUMP_STRENGTH).override(0.42f);
-        getAttribute(Attributes.GENERIC_MOVEMENT_SPEED).override(0.09f);
-        getAttribute(Attributes.GENERIC_STEP_HEIGHT).override(1.5f);
+        getAttribute(Attributes.GENERIC_JUMP_STRENGTH).get().override(0.42f);
+        getAttribute(Attributes.GENERIC_MOVEMENT_SPEED).get().override(0.09f);
+        getAttribute(Attributes.GENERIC_STEP_HEIGHT).get().override(1.5f);
     }
 }

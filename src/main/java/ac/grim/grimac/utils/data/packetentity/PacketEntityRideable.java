@@ -13,7 +13,7 @@ public class PacketEntityRideable extends PacketEntity {
 
     public PacketEntityRideable(GrimPlayer player, EntityType type, double x, double y, double z) {
         super(player, type, x, y, z);
-        getAttribute(Attributes.GENERIC_STEP_HEIGHT).override(1.0f);
-        attributeMap.put(Attributes.GENERIC_MOVEMENT_SPEED, ValuedAttribute.ranged(Attributes.GENERIC_MOVEMENT_SPEED, 0.1f, 0, 1024));
+        getAttribute(Attributes.GENERIC_STEP_HEIGHT).get().override(1.0f);
+        trackAttribute(ValuedAttribute.ranged(Attributes.GENERIC_MOVEMENT_SPEED, 0.1f, 0, 1024));
     }
 }
