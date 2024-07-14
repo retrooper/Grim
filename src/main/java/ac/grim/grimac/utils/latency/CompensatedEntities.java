@@ -156,6 +156,7 @@ public class CompensatedEntities {
 
         if (entity instanceof PacketEntityHorse) {
             for (WrapperPlayServerUpdateAttributes.Property snapshotWrapper : objects) {
+                if (snapshotWrapper.getAttribute() == null) continue;
                 if (snapshotWrapper.getKey().toUpperCase().contains("MOVEMENT")) {
                     entity.getAttribute(Attributes.GENERIC_MOVEMENT_SPEED).get().with(snapshotWrapper);
                 }
@@ -168,6 +169,7 @@ public class CompensatedEntities {
 
         if (entity instanceof PacketEntityRideable) {
             for (WrapperPlayServerUpdateAttributes.Property snapshotWrapper : objects) {
+                if (snapshotWrapper.getAttribute() == null) continue;
                 if (snapshotWrapper.getKey().toUpperCase().contains("MOVEMENT")) {
                     entity.getAttribute(Attributes.GENERIC_MOVEMENT_SPEED).get().with(snapshotWrapper);
                 }

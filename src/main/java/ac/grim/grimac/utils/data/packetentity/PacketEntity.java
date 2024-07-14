@@ -86,6 +86,7 @@ public class PacketEntity extends TypedPacketEntity {
     }
 
     public Optional<ValuedAttribute> getAttribute(Attribute attribute) {
+        if (attribute == null) return Optional.empty();
         return Optional.ofNullable(attributeMap.get(attribute));
     }
 
