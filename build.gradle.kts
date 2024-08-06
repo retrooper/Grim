@@ -149,7 +149,7 @@ tasks.shadowJar {
     relocate("com.google.code.gson", "ac.grim.grimac.shaded.gson")
     relocate("alexh", "ac.grim.grimac.shaded.maps")
     relocate("it.unimi.dsi.fastutil", "ac.grim.grimac.shaded.fastutil")
-    relocate("net.kyori", "ac.grim.grimac.shaded.kyori")
+    //relocate("net.kyori", "ac.grim.grimac.shaded.kyori")
     relocate("okhttp3", "ac.grim.grimac.shaded.okhttp3")
     relocate("okio", "ac.grim.grimac.shaded.okio")
     relocate("org.yaml.snakeyaml", "ac.grim.grimac.shaded.snakeyaml")
