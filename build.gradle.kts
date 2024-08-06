@@ -30,11 +30,15 @@ repositories {
     maven("https://repo.codemc.io/repository/maven-releases/") // PacketEvents
     maven("https://repo.codemc.io/repository/maven-snapshots/")
     mavenCentral()
+
+    flatDir {
+        dirs("libs")
+    }
     // FastUtil, Discord-Webhooks
 }
 
 dependencies {
-    implementation("com.github.retrooper:packetevents-spigot:2.4.1-SNAPSHOT")
+    compileOnly("packetevents-latest:packetevents-latest")
     implementation("co.aikar:acf-paper:0.5.1-SNAPSHOT")
     implementation("club.minnced:discord-webhooks:0.8.0") // Newer versions include kotlin-stdlib, which leads to incompatibility with plugins that use Kotlin
     implementation("it.unimi.dsi:fastutil:8.5.13")
@@ -57,6 +61,8 @@ bukkit {
     main = "ac.grim.grimac.GrimAC"
     apiVersion = "1.13"
     foliaSupported = true
+
+    depend = listOf("packetevents")
 
     softDepend = listOf(
         "ProtocolLib",
@@ -133,8 +139,8 @@ publishing.publications.create<MavenPublication>("maven") {
 tasks.shadowJar {
     minimize()
     archiveFileName.set("${project.name}-${project.version}.jar")
-    relocate("io.github.retrooper.packetevents", "ac.grim.grimac.shaded.io.github.retrooper.packetevents")
-    relocate("com.github.retrooper.packetevents", "ac.grim.grimac.shaded.com.github.retrooper.packetevents")
+    //relocate("io.github.retrooper.packetevents", "ac.grim.grimac.shaded.io.github.retrooper.packetevents")
+    //relocate("com.github.retrooper.packetevents", "ac.grim.grimac.shaded.com.github.retrooper.packetevents")
     relocate("co.aikar.commands", "ac.grim.grimac.shaded.acf")
     relocate("co.aikar.locale", "ac.grim.grimac.shaded.locale")
     relocate("club.minnced", "ac.grim.grimac.shaded.discord-webhooks")

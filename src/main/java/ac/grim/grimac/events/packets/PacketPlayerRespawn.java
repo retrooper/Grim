@@ -104,10 +104,10 @@ public class PacketPlayerRespawn extends PacketListenerAbstract {
             WrapperPlayServerJoinGame joinGame = new WrapperPlayServerJoinGame(event);
             player.gamemode = joinGame.getGameMode();
             player.entityID = joinGame.getEntityId();
-            player.dimension = joinGame.getDimension();
+            player.dimensionType = joinGame.getDimensionType();
 
             if (PacketEvents.getAPI().getServerManager().getVersion().isOlderThan(ServerVersion.V_1_17)) return;
-            player.compensatedWorld.setDimension(joinGame.getDimension(), event.getUser());
+            player.compensatedWorld.setDimension(joinGame.getDimensionType(), event.getUser());
         }
 
         if (event.getPacketType() == PacketType.Play.Server.RESPAWN) {
@@ -164,7 +164,7 @@ public class PacketPlayerRespawn extends PacketListenerAbstract {
                     player.compensatedWorld.chunks.clear();
                     player.compensatedWorld.isRaining = false;
                 }
-                player.dimension = respawn.getDimension();
+                player.dimensionType = respawn.getDimensionType();
 
                 player.compensatedEntities.serverPlayerVehicle = null; // All entities get removed on respawn
                 player.compensatedEntities.playerEntity = new PacketEntitySelf(player, player.compensatedEntities.playerEntity);
@@ -181,7 +181,7 @@ public class PacketPlayerRespawn extends PacketListenerAbstract {
                 player.clientVelocity = new Vector();
                 player.gamemode = respawn.getGameMode();
                 if (PacketEvents.getAPI().getServerManager().getVersion().isNewerThanOrEquals(ServerVersion.V_1_17)) {
-                    player.compensatedWorld.setDimension(respawn.getDimension(), event.getUser());
+                    player.compensatedWorld.setDimension(respawn.getDimensionType(), event.getUser());
                 }
 
                 // TODO And there should probably be some attribute holder that we can just call reset() on.
@@ -195,7 +195,9 @@ public class PacketPlayerRespawn extends PacketListenerAbstract {
     }
 
     private boolean isWorldChange(GrimPlayer player, WrapperPlayServerRespawn respawn) {
-       return respawn.getDimension().getId() != player.dimension.getId() || !Objects.equals(respawn.getDimension().getDimensionName(), player.dimension.getDimensionName()) || !Objects.equals(respawn.getDimension().getAttributes(), player.dimension.getAttributes());
+        ClientVersion version = PacketEvents.getAPI().getServerManager().getVersion().toClientVersion();
+       return respawn.getDimensionType().getId(version) != (player.dimensionType.getId(version))
+               || !Objects.equals(respawn.getDimensionType().getName(), player.dimensionType.getName());
     }
 
 }
