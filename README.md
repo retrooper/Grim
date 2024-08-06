@@ -5,8 +5,8 @@ This project is considered feature complete for the 2.0 (open-source) branch of 
 GrimAC is an open source Minecraft anticheat designed for 1.20 and supports 1.8-1.20. It is free while in beta. It will eventually become paid and/or will include offering additional subscription based paid checks. Geyser players are fully exempt.
 
 ### How to get 1.21 Minecraft support for Grim (for now)
-**Step 1.** Visit [retrooper/Grim GitHub Actions](https://github.com/retrooper/Grim/actions) and download the latest Grim build, add it to your plugins folder.\
-**Step 2.** Visit [booky10/packetevents GitHub Actions](https://github.com/booky10/packetevents/actions) and download the latest packetevents build (spigot-build), add it to your plugins folder.\
+**Step 1.** Visit [retrooper/Grim GitHub Actions](https://github.com/retrooper/Grim/actions) and download the latest Grim artifact, add it to your plugins folder.\
+**Step 2.** Visit [booky10/packetevents GitHub Actions](https://github.com/booky10/packetevents/actions) and download the latest packetevents artifact (spigot-build), add it to your plugins folder.\
 **Step 3.** 1.21 Minecraft should now work.
 
 
